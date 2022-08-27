@@ -1,0 +1,25 @@
+.spinner-cont {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+  .spinner {
+    position: relative;
+    animation: 1s rotate infinite;
+    animation-timing-function: linear;
+  
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

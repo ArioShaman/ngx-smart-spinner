@@ -1,0 +1,22 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+
+  .spinner-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ececec;
+  }
+
+  .small-cont {
+    width: 200px;
+    height: 200px;
+  }
+
+  .big-cont {
+    width: 500px;
+    height: 500px;
+  }
+}
