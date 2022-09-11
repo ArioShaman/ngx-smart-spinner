@@ -12,7 +12,7 @@ import { NgxSmartSpinnerService } from './ngx-smart-spinner.service';
 })
 export class NgxSmartSpinnerComponent implements OnInit, OnDestroy {
   @Input()
-  public size = 50;
+  public size!: number;
   /**
    * required Input
    */
@@ -30,6 +30,10 @@ export class NgxSmartSpinnerComponent implements OnInit, OnDestroy {
   }
   
   public ngOnInit(): void {
+    if (!this.size) {
+      this.size = this._config.spinnerSize;
+    }
+    
     this._spinnerService.registerSpinner(this.id);
     this.isLoading$ = this._spinnerService.getIsLoadingSpinner(this.id);
   }

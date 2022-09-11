@@ -1,27 +1,119 @@
-# SpinnerApp
+# Smart spinner Angular library
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.9.
+Library provide manage spinners on your application without unnecessary manual work, such as:
 
-## Development server
+```
+	this.isLoading = true;
+    
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## how implement solution
 
-## Code scaffolding
+##### Step 1 Install package
+```
+npm install ngx-smart-spinner
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+##### Step 2 import module
 
-## Build
+```
+imports: [
+	NgxSmartSpinnerModule.forRoot()
+]
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+If don't want to use default spinner you can provide your own spinner:
 
-## Running unit tests
+```
+const ngxSmartSpinnerCont: INgxSmartSpinnerModuleConfig = {
+  spinnerUrl: '../assets/icons/spinner.svg',
+  spinnerSize: 50,
+};
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+...
+imports: [
+	NgxSmartSpinnerModule.forRoot(ngxSmartSpinnerCont)
+]
+```
 
-## Running end-to-end tests
+spinnerUrl - can be path to your local file or url to your file.
+spinnerSize - you should additionaly provide default size of spinner in px
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Additionally: You can change the icon usage by substituting the desired image (icon) into the component itself (example on step 3)
 
-## Further help
+##### Step 3 Component usage
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```
+ <ngx-smart-spinner
+      id="SOME_ID_FOR_YOUR_SPINNER"
+ ></ngx-smart-spinner>
+```
+
+for id you can use any string to identify your spinner (you can use uuid - at your choice)
+
+If you will use the same id on different component - it's not a problem the library call both spinners.
+
+Okey. We added a spinner to the page, what next?
+
+Next you need connect your spinner with http request, it's making simply just modify your headers on request:
+
+```
+  public getList(spinnerId: string): Observable<any> {
+    const url = '/some/url';
+    const headers = new HttpHeaders({
+      spinnerId,
+    });
+
+    return this._http.get(url, { headers });
+  }
+```
+
+The package automatically handle the needed header and will remove ```spinnerId``` before request will called.
+
+
+## How pass different spinner asset?
+#### First way 
+
+Firstly you can provide different images provide module on different places. For example:
+
+Module 1:
+```
+const ngxSmartSpinnerCont: INgxSmartSpinnerModuleConfig = {
+  spinnerUrl: '../assets/icons/spinner-01.svg',
+  spinnerSize: 50,
+};
+
+...
+imports: [
+	NgxSmartSpinnerModule.forRoot(ngxSmartSpinnerCont)
+]
+```
+
+Module 2:
+```
+const ngxSmartSpinnerCont: INgxSmartSpinnerModuleConfig = {
+  spinnerUrl: '../assets/icons/spinner-02.svg',
+  spinnerSize: 100,
+};
+
+...
+imports: [
+	NgxSmartSpinnerModule.forRoot(ngxSmartSpinnerCont)
+]
+```
+#### Second way
+You can change the spinner asset just putted it on component:
+```
+<ngx-smart-spinner
+	id="secondSpinnerId"
+>
+	<img src="../assets/icons/spinner-2.svg">
+</ngx-smart-spinner>
+```
+
+## Component API
+| Property| Description  |
+|------|---|
+|id|uniq identifier of your spinner (can be duplicated in case when we want use a few spinners for one http request)|
+|size|set the size of your spinner in px, default is 50px|
+

@@ -10,6 +10,7 @@ import { AppService } from './app.service';
 
 const ngxSmartSpinnerCont: INgxSmartSpinnerModuleConfig = {
   spinnerUrl: '../assets/icons/spinner.svg',
+  spinnerSize: 50,
 };
 
 @NgModule({
