@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { AppService } from './app.service';
 
 const ngxSmartSpinnerCont: INgxSmartSpinnerModuleConfig = {
-  spinnerUrl: '../assets/icons/spinner.svg',
+  spinnerUrl: '/assets/icons/spinner.svg',
   spinnerSize: 50,
 };
 
