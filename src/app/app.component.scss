@@ -4,10 +4,11 @@
   justify-content: space-around;
 
   .spinner-cont {
+    position: relative;
+    background-color: #ececec;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ececec;
   }
 
   .small-cont {

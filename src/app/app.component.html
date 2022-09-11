@@ -5,14 +5,20 @@
 
 <div class="container">
   <div class="small-cont spinner-cont">
+    <div>Spinner with id {{ smallSpinnerId }}</div>
+
     <ngx-smart-spinner
-      id="small-spinner"
+      [id]="smallSpinnerId"
     ></ngx-smart-spinner>
   </div>
 
   <div class="big-cont spinner-cont">
+    <div>Spinner with id {{ bigSpinnerId }}</div>
     <ngx-smart-spinner
-      id="big-spinner"
-    ></ngx-smart-spinner>
+      [size]="100"
+      [id]="bigSpinnerId"
+    >
+      <img src="../assets/icons/spinner-2.svg">
+    </ngx-smart-spinner>
   </div>
 </div>

@@ -1,11 +1,11 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { SpinnerModifyInterceptor } from './interceptors/spinner-modify.interceptor';
 
 import { NgxSmartSpinnerComponent } from './ngx-smart-spinner.component';
 import { NgxSmartSpinnerService } from './ngx-smart-spinner.service';
-
+import { SpinnerModifyInterceptor } from './interceptors/spinner-modify.interceptor';
+import { NGX_SMART_SPINNER_CONFIG, MODULE_CONFIG } from './consts';
 
 @NgModule({
   declarations: [
@@ -16,10 +16,10 @@ import { NgxSmartSpinnerService } from './ngx-smart-spinner.service';
   ],
   exports: [
     NgxSmartSpinnerComponent
-  ]
+  ],
 })
 export class NgxSmartSpinnerModule {
-  static forRoot(config: any = {}): ModuleWithProviders<NgxSmartSpinnerModule> {
+  static forRoot(config = NGX_SMART_SPINNER_CONFIG): ModuleWithProviders<NgxSmartSpinnerModule> {
     return {
       ngModule: NgxSmartSpinnerModule,
       providers: [
@@ -27,8 +27,12 @@ export class NgxSmartSpinnerModule {
         {  
           provide: HTTP_INTERCEPTORS,  
           useClass: SpinnerModifyInterceptor,  
-          multi: true  
-        }  
+          multi: true,
+        },
+        {
+          provide: MODULE_CONFIG,
+          useValue: config,
+        },
       ]
     };
   }

@@ -2,6 +2,12 @@
   position: absolute;
   height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  
 
   .spinner {
     position: relative;
@@ -13,6 +19,11 @@
       width: 100%;
     }
   }
+}
+
+::ng-deep .nested-content > img {
+  height: 100%;
+  width: 100%;
 }
 
 @keyframes rotate {

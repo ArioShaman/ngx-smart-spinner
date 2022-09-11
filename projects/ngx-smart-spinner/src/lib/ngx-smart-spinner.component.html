@@ -1,11 +1,19 @@
-<ng-container *ngIf="isLoading">
+<ng-container *ngIf="isLoading$ | async">
   <div class="spinner-cont">
     <div
       class="spinner"
       [style.width]="size + 'px'"
       [style.height]="size + 'px'"
     >
-      <img src="https://svgur.com/i/m7N.svg">
+      <div #spinnerRef class="nested-content">
+        <ng-content></ng-content>
+      </div>
+
+      <div *ngIf="!spinnerRef.innerHTML.trim()">
+        <img
+          [src]="spinnerUrl"
+        >
+      </div>
     </div>
   </div>
 </ng-container>

@@ -1,21 +1,33 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { NgxSmartSpinnerModule } from 'ngx-smart-spinner';
+
+import { HttpClientModule } from '@angular/common/http';
+import { NgxSmartSpinnerModule, INgxSmartSpinnerModuleConfig } from 'ngx-smart-spinner';
 
 import { AppComponent } from './app.component';
+import { AppService } from './app.service';
+
+const ngxSmartSpinnerCont: INgxSmartSpinnerModuleConfig = {
+  spinnerUrl: '../assets/icons/spinner.svg',
+};
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    NgxSmartSpinnerModule.forRoot(),
+    HttpClientModule,
+    NgxSmartSpinnerModule.forRoot(
+      ngxSmartSpinnerCont,
+    ),
   ],
-  providers: [],
+  providers: [
+    AppService,
+  ],
   bootstrap: [
-    AppComponent
-  ]
+    AppComponent,
+  ],
 })
 export class AppModule { }
